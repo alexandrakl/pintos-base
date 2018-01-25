@@ -30,6 +30,22 @@ FirstName LastName <email@domain.example>
 >> `struct' member, global or static variable, `typedef', or
 >> enumeration.  Identify the purpose of each in 25 words or less.
 
+Initialize in timer_init your list of threads that are sleeping. 
+
+Put the lock there, so you can't add threads while youre trying to wake up a thread...?
+NO: Turn off interrupts for when you're trying to add things to the list
+(But dont put long blocks of code between disabled interrupts, short bits of code its fine)
+
+when you call interrupt disable it will return the old level
+ENUM INterrupt level old level = interrupt disable
+every time the timer ticks
+at the end set it back to old level
+interrupt set level(to old level)
+
+change status of thread to sleeping
+block or unblock 
+
+
 ---- ALGORITHMS ----
 
 >> A2: Briefly describe what happens in a call to timer_sleep(),
